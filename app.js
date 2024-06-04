@@ -5,8 +5,9 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
+const chalk = require('chalk')
 
-require('./utils/db')
+const Connection = require('./utils/koneksi')
 const Contact = require('./model/contact')
 
 const app = express()
@@ -186,5 +187,6 @@ app.get('/contact/:nama', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`MongoDB Contact App listening at (http://localhost:${port})`)
+     const listenMsg = chalk`{blue.bold MongoDB Contact App} {red.bold listening at {underline http://localhost:${port}}}`
+     console.log(chalk(listenMsg))
   })
